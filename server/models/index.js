@@ -3,3 +3,8 @@
 // Event should reference Event Messages(?)
 
 
+import User from './User';
+import Event from './Event';
+import EventMessage from './EventMessage';
+
+export default { User, Event, EventMessage };

@@ -30,7 +30,7 @@ const eventSchema = new Schema ({
         type: Boolean,
         required: true
     },
-    eventMessages: [EventMessages.schema]
+    eventMessages: [EventMessage.schema]
 });
 
 const Event = model('Event', eventSchema);
