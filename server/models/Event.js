@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const EventMessages = require('./EventMessage');
+const EventMessage = require('./EventMessage');
 
 const Schema = mongoose.Schema;
 
@@ -27,7 +27,7 @@ const eventSchema = new Schema({
         type: Boolean,
         required: true
     },
-    eventMessages: [EventMessages.schema]
+    eventMessages: [EventMessage.schema]
 });
 
 const Event = mongoose.model('Event', eventSchema);
