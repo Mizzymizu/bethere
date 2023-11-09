@@ -1,0 +1,28 @@
+{
+  "name": "bethere",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "client": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^3.12.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "mongoose": "^8.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.1"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.33.2"
+  }
+}
