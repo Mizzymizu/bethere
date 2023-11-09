@@ -2,13 +2,20 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const connection = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/bethere', {
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/bethere', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
     });
 
-    console.log(`MongoDB connected: ${connection.connection.host}`);
+    console.log(`MongoDB connected: ${mongoose.connection.host}`);
+
+    mongoose.connection.on('error', (error) => {
+      console.error(`MongoDB connection error: ${error}`);
+    });
+
+    mongoose.connection.once('open', () => {
+      console.log('Connected to MongoDB');
+    });
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error}`);
     process.exit(1);
