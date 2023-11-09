@@ -1,6 +1,8 @@
-import { Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt';
-import Event from './Event';
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const Event = require('./Event');
+
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     firstName: {
@@ -31,17 +33,15 @@ const userSchema = new Schema({
 userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
         const saltRounds = 10;
-        this.password = await bcrypt.harsh(this.password, saltRounds)
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
 
     next();
 });
 
-// Comapre the incoming password with the hashed password
+// Compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function(password) {
-    return await bcrypt.compare(password, this.password)
+    return await bcrypt.compare(password, this.password);
 };
 
-const User = model('User', userSchema);
-
-export default User;
+module.exports = mongoose.model('User', userSchema);

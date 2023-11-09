@@ -1,10 +1,5 @@
-// User, Event, and Event Message models
-// User should be referencing Event and Event messages 
-// Event should reference Event Messages(?)
+const User = require('./User');
+const Event = require('./Event');
+const EventMessage = require('./EventMessage');
 
-
-import User from './User';
-import Event from './Event';
-import EventMessage from './EventMessage';
-
-export default { User, Event, EventMessage };
+module.exports = { User, Event, EventMessage };
