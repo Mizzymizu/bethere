@@ -1,4 +1,6 @@
-import { Schema, model } from 'mongoose';
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 
 const eventMessageSchema = new Schema({
     dateCreated: {
@@ -17,6 +19,6 @@ const eventMessageSchema = new Schema({
     }
 });
 
-const EventMessage = model('EventMessage', eventMessageSchema);
+const EventMessage = mongoose.model('EventMessage', eventMessageSchema);
 
-export default EventMessage;
+module.exports = EventMessage;
