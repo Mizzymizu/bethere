@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const EventMessages = require('./EventMessage');
+const EventMessage = require('./EventMessage');
 
 const Schema = mongoose.Schema;
 

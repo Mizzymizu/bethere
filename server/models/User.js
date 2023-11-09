@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const Event = require('./Event');
+const EventMessage = require('./EventMessage');
 
 const Schema = mongoose.Schema;
 
@@ -26,7 +27,8 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    events: [Event.schema]
+    events: [Event.schema],
+    eventMessages: [EventMessage.schema]
 });
 
 // Setting up the pre-save middleware to create password
