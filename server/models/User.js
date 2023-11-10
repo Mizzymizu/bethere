@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
+
+const { Schema } = mongoose
 const bcrypt = require('bcrypt');
 const Event = require('./Event');
 const EventMessage = require('./EventMessage');
-
-const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     firstName: {
@@ -27,8 +27,10 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    myEvents: [Event.schema],
-    eventMessages: [EventMessage.schema]
+    events: [{
+        type: Schema.Types.ObjectId,
+        ref: "Event",
+    }],
 });
 
 // Setting up the pre-save middleware to create password
@@ -46,4 +48,6 @@ userSchema.methods.isCorrectPassword = async function(password) {
     return await bcrypt.compare(password, this.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

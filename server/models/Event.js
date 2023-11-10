@@ -1,33 +1,32 @@
 const mongoose = require('mongoose');
-const EventMessage = require('./EventMessage');
 
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
-    eventName: {
+     createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+    name: {
         type: String,
         required: true,
         trim: true
     },
-    eventDescription: {
+    description: {
         type: String
     },
-    eventDate: {
-        type: Date,
-        required: true
-    },
-    eventTime: {
-        type: String
-    },
-    eventLocation: {
+    date: {
         type: String,
         required: true
     },
-    eventAttendance: {
-        type: Boolean,
+    time: {
+        type: String
+    },
+    location: {
+        type: String,
         required: true
     },
-    eventMessages: [EventMessage.schema]
 });
 
 const Event = mongoose.model('Event', eventSchema);

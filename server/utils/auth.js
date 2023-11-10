@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');
 // Environment variables
     // secret
     // expiration
+const secret = "mysecretshhhhhhh"
+const expiration = "2h"
 
 module.exports = {
     AuthenticationError: new GraphQLError('Could not authenticate user...', {
@@ -17,7 +19,7 @@ module.exports = {
 
         // ['Bearer', '<tokenvalue>']
         if (req.headers.authorization) {
-            token = token.split(' ').pop().trim();
+            token = token.split('Bearer ')[1]
         }
 
         if (!token) {

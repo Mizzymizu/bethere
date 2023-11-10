@@ -1,44 +1,54 @@
 const typeDefs = `#graphql
     type User {
-        _id: ID
+        _id: ID!
         firstName: String
         lastName: String
-        email: String
-        password: String
-        myEvents: [Event]
-        myMessages: [EventMessage]
+        email: String!
+        events: [Event]
+
     }
 
     type Event {
-        _id: ID
-        eventName: String
-        eventDescription: String
-        eventDate: Date
-        eventTime: String
-        eventLocation: String
-        eventAttendance: Boolean
-        eventMessages: [EventMessage]
+        _id: ID!
+        createdBy: User
+        name: String!
+        description: String
+        date: String!
+        time: String
+        location: String!
+    }
+
+    input EventInput {
+        name: String
+        description: String
+        date: String
+        time: String
+        location: String
     }
 
     type EventMessage {
-        _id: ID
-        dateCreated: Date
-        poster: User
+        _id: ID!
+        dateCreated: String
+        userId: User
         messageText: String
     }
 
     type Query {
-        user: User
-        myEvents(user: ID, events: String): Event
-        myMessages(user: ID, myMessages: String): [EventMessage]
+        users: [User!]!
+        user(userId: ID!): User!
+        events: [Event!]!
     }
 
+    type Auth {
+        token: String!
+        user: User!
+    }
     type Mutation {
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-        addEvent(eventName: String!, eventDescription: String, eventDate: String!, eventTime: Date!, eventLocation: String!): Event
-        addEventMessage(dateCreated: Date!, poster: User!, eventMessage: String!): EventMessage
-        updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
-        updateEvent(eventName: String!, eventDescription: String, eventDate: String!, eventTime: Date!, eventLocation: String!): Event
+        addEvent(input: EventInput!): Event!
+        # addEventMessage(eventMessages: String!, eventId: String!): EventMessage
+        # updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
+        # updateEvent(eventName: String!, eventDescription: String, eventDate: String!, eventTime: String!, eventLocation: String!): Event
         login(email: String!, password: String!): Auth
     }
 
