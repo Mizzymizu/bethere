@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 
-function Login() {
+function Signup() {
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,23 +13,16 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Replace this with your actual login logic
-    const loginSuccessful = true;
-    if (loginSuccessful) {
-      navigate('/dashboard');
-    }
+    // Handle form submission here
+    console.log(formData);
   };
-
-  useEffect(() => {
-    // Replace this with your actual login check
-    const userIsLoggedIn = false;
-    if (userIsLoggedIn) {
-      navigate('/dashboard');
-    }
-  }, [navigate]);
 
   return (
     <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input type="text" name="username" onChange={handleChange} />
+      </label>
       <label>
         Email:
         <input type="email" name="email" onChange={handleChange} />
@@ -40,9 +31,9 @@ function Login() {
         Password:
         <input type="password" name="password" onChange={handleChange} />
       </label>
-      <input type="submit" value="Log In" />
+      <input type="submit" value="Sign Up" />
     </form>
   );
 }
 
-export default Login;
+export default Signup;
