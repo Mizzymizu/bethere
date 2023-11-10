@@ -5,7 +5,8 @@ const typeDefs = `#graphql
         lastName: String
         email: String
         password: String
-        events: [Event]
+        myEvents: [Event]
+        myMessages: [EventMessage]
     }
 
     type Event {
@@ -28,8 +29,8 @@ const typeDefs = `#graphql
 
     type Query {
         user: User
-        event(user: ID, events: String): Event
-        eventMessage(user: ID, eventMessage: String): [EventMessage]
+        myEvents(user: ID, events: String): Event
+        myMessages(user: ID, myMessages: String): [EventMessage]
     }
 
     type Mutation {

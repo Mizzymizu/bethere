@@ -27,7 +27,7 @@ const userSchema = new Schema({
         required: true,
         minlength: 8
     },
-    events: [Event.schema],
+    myEvents: [Event.schema],
     eventMessages: [EventMessage.schema]
 });
 
