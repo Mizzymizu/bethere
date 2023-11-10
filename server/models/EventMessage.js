@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 const eventMessageSchema = new Schema({
     dateCreated: {
         type: Date,
-        required: true
+        default: Date.now
     },
-    poster: [
+    userId: [
         {
             type: Schema.Types.ObjectId,
             ref: 'User'
