@@ -46,8 +46,8 @@ const typeDefs = `#graphql
     type Mutation {
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addEvent(input: EventInput!): Event!
-        # addEventMessage(eventMessages: String!, eventId: String!): EventMessage
-        # updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
+        # addEventMessage(eventMessages: String!, eventId: String!): EventMessage # might not include this afterall
+        updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
         # updateEvent(eventName: String!, eventDescription: String, eventDate: String!, eventTime: String!, eventLocation: String!): Event
         login(email: String!, password: String!): Auth
     }

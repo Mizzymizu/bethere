@@ -110,15 +110,15 @@ const resolvers = {
 
     //     return newMessage
     // },
-    // updateUser: async (parent, args, context) => {
-    //     if (context.user) {
-    //         return await User.findByIdAndUpdate(context.user._id, args, {
-    //             new: true
-    //         })
-    //     }
+    updateUser: async (parent, args, context) => {
+        if (context.user) {
+            return await User.findByIdAndUpdate(context.user._id, args, {
+                new: true
+            })
+        }
 
-    //     throw AuthenticationError
-    // },
+        throw AuthenticationError
+    },
     // updateEvent: async (parent, { eventName, eventDescription, eventDate, eventTime, eventLocation }) => {
     //     const updatedEvent = await Event.findOneAndUpdate(
     //         { eventName },
