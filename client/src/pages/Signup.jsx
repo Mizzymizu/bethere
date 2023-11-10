@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 function Signup() {
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     username: '',
     email: '',
     password: '',
@@ -20,8 +22,12 @@ function Signup() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
-        <input type="text" name="username" onChange={handleChange} />
+        First Name:
+        <input type="text" name="firstName" onChange={handleChange} />
+      </label>
+      <label>
+        Last Name:
+        <input type="text" name="lastName" onChange={handleChange} />
       </label>
       <label>
         Email:
