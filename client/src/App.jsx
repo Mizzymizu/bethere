@@ -6,7 +6,7 @@ import { Dashboard, Home, Login, Signup, CreateEvent } from './pages';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App bg-orange-50">
         <header className="App-header">
           <Routes>
             <Route path="/" element={<Home />} />
