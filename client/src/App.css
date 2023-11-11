@@ -7,12 +7,13 @@
   pointer-events: none;
 }
 
-.signup-form {
+.input-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
+ width: 30vw; 
 
 }
 
@@ -21,6 +22,13 @@
   justify-content: space-between;
   width: 100%;
   gap: 20px;
+}
+
+.form-item input, .form-item textarea{
+  width: 50%;
+}
+.form-item:last-of-type {
+  margin-bottom: 25px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
