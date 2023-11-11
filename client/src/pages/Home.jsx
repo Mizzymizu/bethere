@@ -7,11 +7,14 @@ const Home = () => {
     <div>
       <img src={Logo} alt="BeThere Logo" style={{ width: '300px', }} />
       <h1>Welcome to our RSVP Application</h1>
-      <p>
+      {/* <p>
         <Link to="/signup">Sign Up</Link>
       </p>
       <p>
         <Link to="/login">Log In</Link>
+      </p> */}
+      <p>
+        <Link to="/dashboard">Create event as a guest</Link>
       </p>
     </div>
   );
