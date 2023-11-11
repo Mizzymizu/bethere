@@ -21,7 +21,7 @@ function Signup() {
   };
 
   return (
-    <form className="signup-form" onSubmit={handleSubmit}>
+    <form className="input-form" onSubmit={handleSubmit}>
       <FormInputItem
         title="First Name"
         name="firstName"
