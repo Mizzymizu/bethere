@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import FormInputItem from "../components/FormInputItem";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -20,23 +21,37 @@ function Signup() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        First Name:
-        <input type="text" name="firstName" onChange={handleChange} />
-      </label>
-      <label>
-        Last Name:
-        <input type="text" name="lastName" onChange={handleChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" onChange={handleChange} />
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" onChange={handleChange} />
-      </label>
+    <form className="signup-form" onSubmit={handleSubmit}>
+      <FormInputItem
+        title="First Name"
+        name="firstName"
+        onChange={handleChange}
+        type="text"
+      />
+      <FormInputItem
+        title="Last Name"
+        name="lastName"
+        onChange={handleChange}
+        type="text"
+      />
+      <FormInputItem
+        title="Username"
+        name="username"
+        onChange={handleChange}
+        type="text"
+      />
+      <FormInputItem
+        title="Email"
+        name="email"
+        onChange={handleChange}
+        type="email"
+      />
+      <FormInputItem
+        title="Password"
+        name="password"
+        onChange={handleChange}
+        type="password"
+      />
       <input type="submit" value="Sign Up" />
     </form>
   );
