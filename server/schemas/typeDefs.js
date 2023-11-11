@@ -43,27 +43,14 @@ const typeDefs = `#graphql
         token: String!
         user: User!
     }
+
     type Mutation {
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addEvent(input: EventInput!): Event!
-        # addEventMessage(eventMessages: String!, eventId: String!): EventMessage # might not include this afterall
         updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
-        # updateEvent(eventName: String!, eventDescription: String, eventDate: String!, eventTime: String!, eventLocation: String!): Event
+        updateEvent(input: EventInput!): Event
         login(email: String!, password: String!): Auth
     }
-
-    # Create Query
-        # user: User
-        # event(user: ID, events: String): Event
-        # eventMessage(user: ID, eventMessage): [EventMessage] 
-    # Create Mutations
-        # addUser
-        # addEvent
-        # addEventMessage
-        # updateUser
-        # updateEvent
-        # login
-
 `
 
 module.exports = typeDefs;
