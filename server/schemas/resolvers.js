@@ -83,7 +83,7 @@ const resolvers = {
 
       const { name, description, date, time, location } = input;
 
-      const updatedEvent = await Event.findOneAndUpdate(
+      const updatedEvent = await User.findOneAndUpdate(
         { name },
         { name, description, date, time, location },
         { new: true }
