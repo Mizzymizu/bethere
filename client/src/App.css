@@ -12,23 +12,53 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2px;
- width: 30vw; 
-
+  gap: 8px;
+  width: 50vw;
 }
 
-.form-item {
+.form-item,
+.form-radio-label {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 20px;
 }
 
-.form-item input, .form-item textarea{
-  width: 50%;
+.form-item input,
+.form-item textarea {
+  width: 400px;
 }
+
+.form-item textarea {
+  height: 100px;
+}
+
 .form-item:last-of-type {
   margin-bottom: 25px;
+}
+
+.form-textarea-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 5px;
+}
+
+.form-radio-item {
+  display: flex;
+  max-width: 50%;
+  cursor: pointer;
+}
+
+.form-radio-item-parent {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.form-radio-label input {
+  margin-right: 10px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
