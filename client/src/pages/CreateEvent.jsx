@@ -1,4 +1,5 @@
-pa
+import React, { useState } from 'react';
+import FormInputItem from '../components/FormInputItem';
 
 function CreateEvent() {
   const [formData, setFormData] = useState({
