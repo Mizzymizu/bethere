@@ -46,5 +46,3 @@ export const LOGIN = `#graphql
         }
     }
 `;
-
-// Mutation to update Events will be posted after getting it to work in Apollo Database

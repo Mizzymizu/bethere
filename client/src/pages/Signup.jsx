@@ -1,58 +1,75 @@
 import React, { useState } from "react";
-import FormInputItem from "../components/FormInputItem";
+import { useMutation } from "@apollo/client";
+import { SIGNUP } from "../utils/mutations"; // Import your SIGNUP mutation
 
 function Signup() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    username: '',
-    email: '',
-    password: '',
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
   });
+
+  const [signupUser] = useMutation(SIGNUP); // Use the SIGNUP mutation
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
+
+    try {
+      const { data } = await signupUser({
+        variables: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        },
+      });
+
+      // Handle successful registration (data will contain the token and user info)
+      const token = data.addUser.token;
+      // Store the token (e.g., in local storage or cookies)
+      // Redirect to the user's profile or home page
+    } catch (error) {
+      // Handle registration error, display error message, etc.
+      console.error("Registration error:", error);
+    }
   };
 
   return (
     <form className="input-form" onSubmit={handleSubmit}>
-      <FormInputItem
-        title="First Name"
+      <input
+        type="text"
         name="firstName"
+        placeholder="First Name"
+        value={formData.firstName}
         onChange={handleChange}
-        type="text"
       />
-      <FormInputItem
-        title="Last Name"
+      <input
+        type="text"
         name="lastName"
+        placeholder="Last Name"
+        value={formData.lastName}
         onChange={handleChange}
-        type="text"
       />
-      <FormInputItem
-        title="Username"
-        name="username"
-        onChange={handleChange}
-        type="text"
-      />
-      <FormInputItem
-        title="Email"
-        name="email"
-        onChange={handleChange}
+      <input
         type="email"
-      />
-      <FormInputItem
-        title="Password"
-        name="password"
+        name="email"
+        placeholder="Email"
+        value={formData.email}
         onChange={handleChange}
-        type="password"
       />
-      <input type="submit" value="Sign Up" />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <button type="submit">Sign Up</button>
     </form>
   );
 }
