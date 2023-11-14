@@ -11,7 +11,7 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: authMiddleware, // Move the context option here
 });
 
 const startApolloServer = async () => {
@@ -19,17 +19,9 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  server.applyMiddleware({ app, path: '/graphql' });
+  server.applyMiddleware({ app, path: '/graphql' }); // Use applyMiddleware
 
   db.once('open', () => {
-    // Serve the React app from the 'build' directory
-    app.use(express.static(path.join(__dirname, 'build')));
-
-    // Serve the app's HTML file at the root path
-    app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname, 'build', 'index.html'));
-    });
-
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
