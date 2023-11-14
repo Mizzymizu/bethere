@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import App from './App'; // Your main application component
@@ -14,13 +14,15 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+// Instead of using ReactDOM.createRoot
+createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
   </React.StrictMode>
 );
+
 
 
 // If you want to start measuring performance in your app, pass a function
