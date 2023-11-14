@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+
+import { ADD_USER } from "../utils/mutations"; // Import your ADD_USER mutation
+
 import { ADD_USER } from "../utils/mutations"; // Import your SIGNUP mutation
 
 function Signup() {
@@ -9,6 +12,7 @@ function Signup() {
     email: "",
     password: "",
   });
+
 
   const [signupUser] = useMutation(ADD_USER); // Use the SIGNUP mutation
 
