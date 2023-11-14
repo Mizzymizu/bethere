@@ -11,3 +11,19 @@ export const LOGIN = `#graphql
         }
     }
 `;
+
+export const SIGNUP = gql`
+  mutation signup($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
+    addUser(
+      firstName: $firstName,
+      lastName: $lastName,
+      email: $email,
+      password: $password
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
