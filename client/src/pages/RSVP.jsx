@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import FormInputItem from '../components/FormInputItem';
+import Logo from '../assets/bethere.png';
 
 
 
@@ -26,10 +27,10 @@ const RSVP = () => {
 
     return (
         <div>
-        <h1>You are invited</h1>
+            <img src={Logo} alt="BeThere Logo" style={{ width: '300px', }} />
+        <h1>RSVP</h1>
         <form onSubmit={handleSubmit} className='input-form'>
-            <h1>RSVP</h1>
-            <h2>Event Details</h2>
+            <h3>Event Details</h3>
             <FormInputItem title="Name" name="name" onChange={handleChange} type="text" />
             <FormInputItem title="Email" name="email" onChange={handleChange} type="email" />
             <FormInputItem title="RSVP" name="rsvp" onChange={handleChange} type="radio" options={["Yes", "No", "Maybe"]} />
