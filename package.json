@@ -12,6 +12,7 @@
         "@apollo/client": "^3.8.7",
         "@apollo/react-hooks": "^4.0.0",
         "@vitejs/plugin-react": "^4.1.1",
+        "apollo-link": "^1.2.14",
         "apollo-server-express": "^3.13.0",
         "autoprefixer": "^10.4.16",
         "concurrently": "^7.0.0",

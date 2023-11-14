@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ApolloProvider } from '@apollo/client/react';
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloLink } from 'apollo-link'
 import ErrorBoundary from './components/ErrorBoundary';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
@@ -11,7 +12,7 @@ const httpLink = createHttpLink({
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: ApolloLink.from([httpLink]),
   cache: new InMemoryCache(),
 });
 

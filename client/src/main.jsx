@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { ApolloProvider } from '@apollo/client';
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloLink } from 'apollo-link';
 import ErrorBoundary from './components/ErrorBoundary';
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
 const client = new ApolloClient({
-  link: createHttpLink,
+  link: ApolloLink.from([httpLink]),
   cache: new InMemoryCache(),
 });
 
