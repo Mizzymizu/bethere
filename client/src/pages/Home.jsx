@@ -7,17 +7,16 @@ const Home = () => {
     <div>
       <img src={Logo} alt="BeThere Logo" style={{ width: '300px', }} />
       <h1>Welcome to our RSVP Application</h1>
-      {/* TODO: add authentication */}
-      {/* <p>
+      <p>
         <Link to="/signup">Sign Up</Link>
       </p>
       <p>
         <Link to="/login">Log In</Link>
-      </p> */}
-      <p>
+      </p>
+      {/* <p>
         <Link to="/create-event">Create event as a guest</Link>
         <Link to="/RSVP">RSVP</Link>
-      </p>
+      </p> */}
     </div>
   );
 };

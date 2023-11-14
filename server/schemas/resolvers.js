@@ -13,7 +13,7 @@ const resolvers = {
         throw new Error(err);
       }
     },
-    user: async (parent, { userId }) => {
+    user: async (_, { userId }) => {
       try {
         const user = await User.findById(userId);
         if (user) {
@@ -24,17 +24,6 @@ const resolvers = {
       } catch (err) {
         throw new Error(err);
       }
-
-      // if(context.user) {
-      //     const user = await User.findById(context.user._id).populate({
-      //         path: 'event',
-      //         populate: 'events'
-      //     })
-
-      //     return user;
-      // }
-
-      // throw AuthenticationError;
     },
     events: async (_, args, context) => {
       const user = context.user;
@@ -48,31 +37,9 @@ const resolvers = {
         throw new Error(err);
       }
     },
-    // myEvents: async (parent, { _id }, context) => {
-    //     if (context.user) {
-    //         const user = await User.findById(context.user._id).populate({
-    //             path: 'myEvent'
-    //         })
-
-    //         return user.myEvents.id(_id)
-    //     }
-
-    //     throw AuthenticationError
-    // },
-    // eventMessage: async (parent, { _id }, context) => {
-    //     if (context.user) {
-    //         const user = await User.findById(context.user._id).populate({
-    //             path: 'myMessages',
-    //         })
-
-    //         return user.myEvents.id(_id)
-    //     }
-
-    //     throw AuthenticationError
-    // }
   },
   Mutation: {
-    addUser: async (parent, args) => {
+    addUser: async (_, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
@@ -81,7 +48,7 @@ const resolvers = {
     addEvent: async (_, { input }, context) => {
       const user = context.user;
       if (!user) {
-        throw new Error("You m ust be logged in to perform this action!");
+        throw new Error("You must be logged in to perform this action!");
       }
 
       const { name, description, date, time, location } = input;
@@ -99,35 +66,32 @@ const resolvers = {
 
       return event;
     },
-    // addEventMessage: async (parent, { eventMessages, eventId }, context) => {
-    //     const user = context.user._id
-    //     console.log(user)
-    //     const newMessage = await Event.findOneAndUpdate(
-    //         { _id: eventId }, // filter
-    //         { $push: { user, eventMessages } }, // push over addtoset to add similar comments
-    //         { new: true }
-    //     )
+    updateUser: async (_, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, {
+          new: true,
+        });
+      }
 
-    //     return newMessage
-    // },
-    // updateUser: async (parent, args, context) => {
-    //     if (context.user) {
-    //         return await User.findByIdAndUpdate(context.user._id, args, {
-    //             new: true
-    //         })
-    //     }
+      throw AuthenticationError;
+    },
+    updateEvent: async (_, { input, events }, context) => {
+      const user = context.user;
+      if (!user) {
+        throw new Error("You must be logged in to perform this action!");
+      }
 
-    //     throw AuthenticationError
-    // },
-    // updateEvent: async (parent, { eventName, eventDescription, eventDate, eventTime, eventLocation }) => {
-    //     const updatedEvent = await Event.findOneAndUpdate(
-    //         { eventName },
-    //         { eventName, eventDescription, eventDate, eventTime, eventLocation },
-    //         { new: true, upsert: true }
-    //     )
-    //     return updatedEvent
-    // },
-    login: async (parent, { email, password }) => {
+      const { name, description, date, time, location } = input;
+
+      const updatedEvent = await User.findOneAndUpdate(
+        { events },
+        { name, description, date, time, location },
+        { new: true }
+      );
+
+      return updatedEvent;
+    },
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
