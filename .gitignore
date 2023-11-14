@@ -12,6 +12,7 @@ package-lock.json
 .env
 dist
 dist-ssr
+build
 *.local
 
 # Editor directories and files

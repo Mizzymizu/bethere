@@ -48,6 +48,7 @@ const typeDefs = `#graphql
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addEvent(input: EventInput!): Event!
         updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
+        # Currrently not working as intended, will continue working after MVP
         updateEvent(events: String! input: EventInput!): User
         login(email: String!, password: String!): Auth
     }

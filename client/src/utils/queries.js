@@ -1,25 +1,39 @@
-import { gql } from '@apollo/client';
+// Query for all Users
+export const QUERY_USERS = `#graphql
+    query users($events: String!) {
+        users(events: $events) {
+            _id
+            firstName
+            lastName
+            email
+            events {
+                name
+            }
+        }
+    }
+`
 
-// TODO: WRITE RELEVANT QUERIES HERE
+export const QUERY_USER = `#graphql
+    query user($userId: ID!) {
+        user(userId: $userId) {
+            _id
+            firstName
+            lastName
+            email
+            events {
+                name
+            }
+        }
+    }
+`
 
-
-// export const QUERY_TECH = gql`
-//   query tech {
-//     tech {
-//       _id
-//       name
-//     }
-//   }
-// `;
-
-// export const QUERY_MATCHUPS = gql`
-//   query matchups($_id: String) {
-//     matchups(_id: $_id) {
-//       _id
-//       tech1
-//       tech2
-//       tech1_votes
-//       tech2_votes
-//     }
-//   }
-`;
+export const QUERY_EVENTS = `#graphql
+    query events {
+        _id
+        name
+        description
+        date
+        time
+        location
+    }
+`
