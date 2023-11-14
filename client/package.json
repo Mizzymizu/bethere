@@ -21,6 +21,7 @@
     "@vitejs/plugin-react": "^4.1.1",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.0",
+    "graphql-tag": "^2.12.6",
     "jsonwebtoken": "^9.0.2",
     "jwt-decode": "^4.0.0",
     "postcss": "^8.4.31",
@@ -50,7 +51,6 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "engines": {
-    "node": "14.x"
+    "node": "^18.17.1"
   }
-  
 }
