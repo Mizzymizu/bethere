@@ -5,7 +5,7 @@ import Logo from '../assets/bethere.png';
 
 
 const RSVP = () => {
-  const [formState, setFormState] = useState({
+const [formState, setFormState] = useState({
     name: "",
     email: "",
     notes: "",
