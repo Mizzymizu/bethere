@@ -48,7 +48,7 @@ const resolvers = {
     addEvent: async (_, { input }, context) => {
       const user = context.user;
       if (!user) {
-        throw new Error("You m ust be logged in to perform this action!");
+        throw new Error("You must be logged in to perform this action!");
       }
 
       const { name, description, date, time, location } = input;
@@ -75,7 +75,7 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    updateEvent: async (_, { input }, context) => {
+    updateEvent: async (_, { input, events }, context) => {
       const user = context.user;
       if (!user) {
         throw new Error("You must be logged in to perform this action!");
@@ -83,8 +83,8 @@ const resolvers = {
 
       const { name, description, date, time, location } = input;
 
-      const updatedEvent = await Event.findOneAndUpdate(
-        { name },
+      const updatedEvent = await User.findOneAndUpdate(
+        { events },
         { name, description, date, time, location },
         { new: true }
       );

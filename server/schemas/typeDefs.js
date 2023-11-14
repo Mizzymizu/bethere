@@ -48,7 +48,7 @@ const typeDefs = `#graphql
         addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
         addEvent(input: EventInput!): Event!
         updateUser(firstName: String!, lastName: String!, email: String!, password: String!): User
-        updateEvent(input: EventInput!): Event
+        updateEvent(events: String! input: EventInput!): User
         login(email: String!, password: String!): Auth
     }
 `
