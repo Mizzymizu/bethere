@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
+// vite.config.js
 export default defineConfig({
   plugins: [react()],
   server: {
@@ -9,7 +10,7 @@ export default defineConfig({
     open: true,
     proxy: {
       '/graphql': {
-        target: 'http://localhost:3001',
+        target: 'http://127.0.0.1:3001', // Updated target to use IPv4 loopback address
         secure: false,
         changeOrigin: true,
       },
