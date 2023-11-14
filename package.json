@@ -17,6 +17,7 @@
         "autoprefixer": "^10.4.16",
         "bcrypt": "^5.1.1",
         "concurrently": "^7.0.0",
+        "jsonwebtoken": "^9.0.2",
         "mongodb": "^4.17.1",
         "mongoose": "^7.6.5",
         "react": "^18.2.0",
