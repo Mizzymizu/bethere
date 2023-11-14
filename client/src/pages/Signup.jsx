@@ -10,7 +10,6 @@ function Signup() {
     password: "",
   });
 
-
   const [addUser] = useMutation(ADD_USER); // Use the SIGNUP mutation
 
   const handleChange = (e) => {
