@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { ADD_USER } from "../utils/mutations"; // Import your ADD_USER mutation
+import { ADD_USER } from "../utils/mutations";
 
 function Signup() {
+  console.log('Signup component rendered');
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -10,7 +12,7 @@ function Signup() {
     password: "",
   });
 
-  const [addUser] = useMutation(ADD_USER); // Use the SIGNUP mutation
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,6 +42,8 @@ function Signup() {
   };
 
   return (
+    <div>
+      {error && <div>Signup failed</div>}
     <form className="input-form" onSubmit={handleSubmit}>
       <input
         type="text"
@@ -71,6 +75,7 @@ function Signup() {
       />
       <button type="submit">Sign Up</button>
     </form>
+    </div>
   );
 }
 

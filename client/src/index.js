@@ -1,26 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
-import './index.css';
-import App from './App';
+import { ApolloProvider } from '@apollo/client/react';
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { ApolloLink } from 'apollo-link'
+import ErrorBoundary from './components/ErrorBoundary';
 import reportWebVitals from './reportWebVitals';
+import App from './App';
 
 const httpLink = createHttpLink({
-  uri: '/graphql', // Your GraphQL server endpoint
+  uri: '/graphql',
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: ApolloLink.from([httpLink]),
   cache: new InMemoryCache(),
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <ErrorBoundary>
     <ApolloProvider client={client}>
       <App />
     </ApolloProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
