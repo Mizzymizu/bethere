@@ -1,5 +1,6 @@
-// Mutation to add a user
-export const ADD_USER = `#graphql
+import gql from "graphql-tag";
+
+export const ADD_USER = gql`
     mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
         addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
             firstName
@@ -11,7 +12,7 @@ export const ADD_USER = `#graphql
 `
 
 // Mutation to add an event
-export const ADD_EVENT = `#graphql
+export const ADD_EVENT = gql`
     mutation addEvent($input: EventInput!) {
         addEvent(input: $input) {
             name
@@ -24,7 +25,7 @@ export const ADD_EVENT = `#graphql
 `
 
 // Mutation to update the User 
-export const UPDATE_USER = `#graphql
+export const UPDATE_USER = gql`
     mutation updateUser($firstName: String!, $lastName: String!, $email: String!, $password: String!) {
         updateUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password) {
             firstName
@@ -36,7 +37,7 @@ export const UPDATE_USER = `#graphql
 `
 
 // Creating the log-in mutation
-export const LOGIN = `#graphql
+export const LOGIN = gql`
     mutation login($email: String!, $password: String!) {
         login(email: $email, password: $password) {
             token
