@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN } from '../utils/mutations';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN } from "../utils/mutations";
+
+// ----------------------------8<----------------------------
 
 function Login() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -17,26 +19,17 @@ function Login() {
   };
 
   const handleLoginSuccess = (token) => {
-    // Log the token before storing it
-    console.log('Token:', token);
-  
-    // Check if the token is present before storing it
     if (token) {
-      // Store the token in local storage
-      localStorage.setItem('token', token);
-  
-      // Redirect to the dashboard or user profile page
-      navigate('/dashboard');
+      localStorage.setItem("token", token);
+      navigate("/dashboard");
     } else {
-      console.error('Token is null or undefined');
+      console.error("Token is null or undefined");
     }
   };
-  
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const { data } = await loginUser({
         variables: {
@@ -44,23 +37,17 @@ function Login() {
           password: formData.password,
         },
       });
-  
-      // Log the data object
-      console.log('Data:', data);
-  
-      // Assuming your server returns a user and token upon successful login
+
       const user = data.login.user;
       const token = data.login.token;
-  
-      // Do something with the user (optional)
-      // Redirect to the dashboard or user profile page
+
       handleLoginSuccess(token);
     } catch (error) {
-      // Handle login error (display error message, etc.)
-      console.error('Login error:', error);
+      console.error("Login error:", error);
     }
   };
-  
+
+  // ----------------------------8<----------------------------
 
   return (
     <div>
