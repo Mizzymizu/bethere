@@ -1,4 +1,4 @@
-const { User, Event, EventMessage } = require("../models");
+const { User, Event } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { GraphQLError } = require("graphql");
 // Import Stripe
