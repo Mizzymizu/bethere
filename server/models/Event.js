@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
-     createdBy: {
+    createdBy: {
         type: Schema.Types.ObjectId,
         ref: "User",
-        required: true,
+        // required: true,
     },
     name: {
         type: String,

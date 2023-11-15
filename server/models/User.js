@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose
 const bcrypt = require('bcrypt');
 const Event = require('./Event');
-const EventMessage = require('./EventMessage');
 
 const userSchema = new Schema({
     firstName: {

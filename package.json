@@ -6,7 +6,8 @@
         "start": "node server/server.js",
         "client": "cd client && npm run dev",
         "dev": "concurrently \"npm run start\" \"npm run client\"",
-        "heroku-postbuild": "cd client && npm install && npm run build"
+        "heroku-postbuild": "cd client && npm install && npm run build",
+        "seed": "cd server && npm run seed"
     },
     "dependencies": {
         "@apollo/client": "^3.8.7",

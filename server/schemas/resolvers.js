@@ -1,4 +1,4 @@
-const { User, Event, EventMessage } = require("../models");
+const { User, Event } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const { GraphQLError } = require("graphql");
 // Import Stripe
@@ -106,11 +106,11 @@ const resolvers = {
           ...input,
           createdBy: user._id,
         });
-        const test = await Event.collection.Query();
+        // const test = await Event.collection.Query();
 
-        test
-          .then((res) => console.log("test", res))
-          .catch((err) => console.log(err));
+        // test
+        //   .then((res) => console.log("test", res))
+        //   .catch((err) => console.log(err));
 
         return createdEvent;
       } catch (err) {
