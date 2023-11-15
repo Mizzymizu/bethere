@@ -20,11 +20,11 @@ const startApolloServer = async () => {
   server.applyMiddleware({ app, path: '/graphql' });
 
 // Serve the React app from the 'dist' directory
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // Serve the app's HTML file at the root path
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
   // Start the server after setting up middleware
