@@ -20,12 +20,12 @@ const typeDefs = gql`
   }
 
   input EventInput {
-    name: String
-    description: String
-    date: String
-    time: String
-    location: String
-  }
+  name: String
+  description: String
+  date: String
+  time: String
+  location: String
+}
 
   type Query {
     users: [User!]!
