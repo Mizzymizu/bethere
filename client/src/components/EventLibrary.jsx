@@ -15,7 +15,7 @@ export const EventLibrary = ({}) => {
 
   return (
     <div className="border-t-4  border-green-600 w-screen mt-10 ">
-      <h2 style={{ cursor: "pointer" }} className="pt-10 pl-5 ">
+      <h2 style={{ cursor: "pointer" }} className="pt-10 pl-5 text-3xl mb-8 font-semibold">
         Event Library
       </h2>
       <div className="grid grid-cols-4 gap-4 m-2">
