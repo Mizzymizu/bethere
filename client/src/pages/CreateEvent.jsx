@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import FormInputItem from '../components/FormInputItem';
+import { ADD_EVENT } from '../utils/mutations';
 
 function CreateEvent() {
   const [formData, setFormData] = useState({
@@ -14,6 +16,9 @@ function CreateEvent() {
     guests: [],
   });
 
+  const [addEvent, { error }] = useMutation(ADD_EVENT);
+  const [successMessage, setSuccessMessage] = useState(null);
+
   const handleChange = (e) => {
     if (e.target.name === 'guests') {
       setFormData({ ...formData, [e.target.name]: getGuestEmails(e.target.value) });
@@ -22,22 +27,55 @@ function CreateEvent() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    
-    console.log(formData);
+
+    try {
+      const { data } = await addEvent({
+        variables: {
+          input: {
+            name: formData.eventName,
+            description: formData.description,
+            date: formData.date,
+            time: formData.time,
+            location: formData.location,
+          },
+        },
+      });
+
+      // Handle success, e.g., show a notification
+      setSuccessMessage('Event created successfully!');
+
+      // Clear the form or perform other necessary actions
+      setFormData({
+        host: '',
+        hostEmail: '',
+        eventName: '',
+        description: '',
+        date: '',
+        time: '',
+        location: '',
+        attire: '',
+        guests: [],
+      });
+
+      // You can also close the success message after a certain time if needed
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+
+      console.log('Event created successfully:', data.addEvent);
+
+    } catch (error) {
+      // Handle error
+      console.error('Error adding event:', error);
+    }
   };
 
-  // TODO: create getGuestEmails function
-// input: 'abc@gmail.com,kse@yahoo.com,wef@aol.com'
-// output: ['abc@gmail', 'kse@yahoo', 'wef@aol']
-
-const getGuestEmails = (guests) => {
-  const guestEmails = guests.split(',');
-  return guestEmails.map((guest) => guest.trim());
-}
-
+  const getGuestEmails = (guests) => {
+    const guestEmails = guests.split(',');
+    return guestEmails.map((guest) => guest.trim());
+  };
 
   return (
     <form className="input-form" onSubmit={handleSubmit}>
@@ -51,8 +89,19 @@ const getGuestEmails = (guests) => {
       <FormInputItem title="Time" name="time" onChange={handleChange} type="time" />
       <FormInputItem title="Location" name="location" onChange={handleChange} type="text" />
       <FormInputItem title="Attire" name="attire" onChange={handleChange} type="text" />
-      <FormInputItem title="Guests" name="guests" onChange={handleChange} type="textarea" placeholder="enter guest email separated by a coma" />
+      <FormInputItem
+        title="Guests"
+        name="guests"
+        onChange={handleChange}
+        type="textarea"
+        placeholder="enter guest email separated by a coma"
+      />
       <input type="submit" value="Create Event" />
+
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {error && <p style={{ color: 'red' }}>Error creating event. Please check your input and try again.</p>}
+
+      <button onClick={() => window.location.href = '/dashboard'}>Return to Dashboard</button>
     </form>
   );
 }

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
 
-import { ADD_USER } from "../utils/mutations"; // Import your ADD_USER mutation
-
+// ----------------------------8<----------------------------
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -12,9 +12,8 @@ function Signup() {
     password: "",
   });
 
-
-  const [addUser] = useMutation(ADD_USER); // Use the ADD_USER mutation
-
+  const [addUser, { error }] = useMutation(ADD_USER);
+  const [signupSuccess, setSignupSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,48 +32,61 @@ function Signup() {
         },
       });
 
-      // Handle successful registration (data will contain the token and user info)
       const token = data.addUser.token;
-      // Store the token (e.g., in local storage or cookies)
-      // Redirect to the user's profile or home page
+
+      setSignupSuccess(true);
     } catch (error) {
-      // Handle registration error, display error message, etc.
       console.error("Registration error:", error);
     }
   };
 
+  const handleLoginRedirect = () => {
+    window.location.href = "/login";
+  };
+
+  // ----------------------------8<----------------------------
+
   return (
-    <form className="input-form" onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="firstName"
-        placeholder="First Name"
-        value={formData.firstName}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="lastName"
-        placeholder="Last Name"
-        value={formData.lastName}
-        onChange={handleChange}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div>
+      {signupSuccess && (
+        <div>
+          <p>Signup successful! Please log in.</p>
+          <button onClick={handleLoginRedirect}>Go to Login</button>
+        </div>
+      )}
+      {error && <div>Signup failed</div>}
+      <form className="input-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="firstName"
+          placeholder="First Name"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="lastName"
+          placeholder="Last Name"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
   );
 }
 
