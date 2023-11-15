@@ -79,29 +79,6 @@ const resolvers = {
         throw new Error("Error adding user. Please try again.");
       }
     },
-    
-    updateEvent: async (_, { input, events }, context) => {
-      const user = context.user;
-      if (!user) {
-        throw new Error("You must be logged in to perform this action!");
-      }
-    
-      const { name, description, date, time, location } = input;
-    
-      try {
-        // Update the event using the Event model
-        const updatedEvent = await Event.findOneAndUpdate(
-          { _id: events, createdBy: user._id },
-          { name, description, date, time, location },
-          { new: true }
-        );
-    
-        return updatedEvent;
-      } catch (err) {
-        throw new Error(err);
-      }
-    },
-    
     updateUser: async (_, args, context) => {
       if (context.user) {
         return await User.findByIdAndUpdate(context.user._id, args, {
@@ -110,6 +87,19 @@ const resolvers = {
       }
 
       throw AuthenticationError;
+    },
+    addEvent: async (_, { input }, context) => {
+      const user = context.user;
+      if (!user) {
+        throw new Error("You must be logged in to perform this action!");
+      }
+      try {
+        const createdEvent = await Event.create({ ...input, createdBy: user._id });
+        return createdEvent;
+      } catch (err) {
+        console.error("Error adding event:", err);
+        throw new Error("Error adding event. Please try again.");
+      }
     },
     updateEvent: async (_, { input, events }, context) => {
       const user = context.user;
