@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 
+// ----------------------------8<----------------------------
+
 function Signup() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -32,7 +34,6 @@ function Signup() {
 
       const token = data.addUser.token;
 
-      // Set signup success state to true
       setSignupSuccess(true);
     } catch (error) {
       console.error("Registration error:", error);
@@ -40,9 +41,10 @@ function Signup() {
   };
 
   const handleLoginRedirect = () => {
-    // Redirect to the login page
     window.location.href = "/login";
   };
+
+  // ----------------------------8<----------------------------
 
   return (
     <div>

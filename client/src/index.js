@@ -1,34 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { ApolloProvider } from '@apollo/client/react';
-import { ApolloClient, InMemoryCache, createHttpLink, ApolloLink } from '@apollo/client';
-import { onError } from '@apollo/client/link/error';  // Import onError from @apollo/client/link/error
-import ErrorBoundary from './components/ErrorBoundary';
-import reportWebVitals from './reportWebVitals';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ApolloProvider } from "@apollo/client/react";
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  ApolloLink,
+} from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import ErrorBoundary from "./components/ErrorBoundary";
+import reportWebVitals from "./reportWebVitals";
+import App from "./App";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path }) => {
-      console.error(`[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`);
+      console.error(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      );
     });
   }
   if (networkError) console.error(`[Network error]: ${networkError}`);
 });
 
 const authLink = new ApolloLink((operation, forward) => {
-  // Retrieve the token from wherever you store it (e.g., localStorage)
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
-  // Add the token to the headers
   operation.setContext(({ headers }) => ({
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   }));
 
@@ -36,11 +41,11 @@ const authLink = new ApolloLink((operation, forward) => {
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, authLink, httpLink]),  // Combine the links
+  link: ApolloLink.from([errorLink, authLink, httpLink]), // Combine the links
   cache: new InMemoryCache(),
 });
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ErrorBoundary>
       <ApolloProvider client={client}>
