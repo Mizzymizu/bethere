@@ -2,7 +2,6 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { typeDefs, resolvers } = require('./schemas');
-
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 
@@ -16,24 +15,27 @@ const server = new ApolloServer({
 
 const startApolloServer = async () => {
   await server.start();
-  app.use(express.urlencoded({ extended: false }));
-  app.use(express.json());
-
+  
+  // Apply Apollo middleware first
   server.applyMiddleware({ app, path: '/graphql' });
 
+  // Serve the React app from the 'build' directory
+  app.use(express.static(path.join(__dirname, 'build')));
+
+  // Serve the app's HTML file at the root path
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+
+  // Start the server after setting up middleware
+  app.listen(PORT, () => {
+    console.log(`API server running on port ${PORT}!`);
+    console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+  });
+
+  // Ensure that the database connection is established
   db.once('open', () => {
-    // Serve the React app from the 'build' directory
-    app.use(express.static(path.join(__dirname, 'build')));
-
-    // Serve the app's HTML file at the root path
-    app.get('/', (req, res) => {
-      res.sendFile(path.join(__dirname, 'build', 'index.html'));
-    });
-
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
-    });
+    console.log('MongoDB database connection established successfully');
   });
 };
 
