@@ -17,7 +17,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create-event" element={<CreateEvent />} />
-            <Route path="/RSVP" element={<RSVP />} />
+            <Route path="/RSVP/:eventId" element={<RSVP />} />
           </Routes>
         </header>
       </div>

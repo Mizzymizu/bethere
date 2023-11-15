@@ -38,6 +38,14 @@ const resolvers = {
         throw new Error(err);
       }
     },
+    event: async (_, { eventId }) => {
+      try {
+        const event = await Event.findById(eventId);
+        return event;
+      } catch (err) {
+        throw new Error(err);
+      }
+    },
     me: async (_, args, context) => {
       const user = context.user;
       if (!user) {
@@ -55,14 +63,14 @@ const resolvers = {
     addUser: async (_, args) => {
       try {
         const existingUser = await User.findOne({ email: args.email });
-    
+
         if (existingUser) {
           throw new GraphQLError("User with this email already exists");
         }
-    
+
         const user = await User.create(args);
         const token = signToken(user);
-    
+
         return {
           success: true,
           message: "Signup successful!",
@@ -94,7 +102,16 @@ const resolvers = {
         throw new Error("You must be logged in to perform this action!");
       }
       try {
-        const createdEvent = await Event.create({ ...input, createdBy: user._id });
+        const createdEvent = await Event.create({
+          ...input,
+          createdBy: user._id,
+        });
+        const test = await Event.collection.Query();
+
+        test
+          .then((res) => console.log("test", res))
+          .catch((err) => console.log(err));
+
         return createdEvent;
       } catch (err) {
         console.error("Error adding event:", err);
@@ -121,7 +138,9 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError("We do not recognize that email/password");
+        throw new AuthenticationError(
+          "We do not recognize that email/password"
+        );
       }
 
       const correctPw = await user.isCorrectPassword(password);

@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="bg-backg-color">
-      <img className="absolute inset-x-50 top-10" src={Logo}  alt="BeThere Logo"  style={{ width: "400px" }} />
+      <img className="absolute inset-x-100 top-10" src={Logo}  alt="BeThere Logo"  style={{ width: "400px" }} />
       {isAuthenticated ? (
         <div>
           <h1>Welcome back!</h1>

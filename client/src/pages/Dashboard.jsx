@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Link, Navigate } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
 import Logo from '../assets/bethere.png';
+import { EventLibrary } from '../components/EventLibrary';
 
 const Dashboard = () => {
   // Fetch the user's data using the QUERY_ME query
@@ -34,8 +35,9 @@ const Dashboard = () => {
     <div className="bg-backg-color">
       <img src={Logo} alt="BeThere Logo" style={{ width: '300px' }} />
       <h1>Welcome, {me.firstName} {me.lastName}!</h1>
-      <Link to="/create-event">Create Event</Link>
+      <Link to="/create-event" className="mr-10">Create Event</Link>
       <button onClick={handleSignOut}>Sign Out</button>
+      <EventLibrary />
     </div>
   );
 };
