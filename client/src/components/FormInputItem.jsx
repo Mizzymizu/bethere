@@ -8,11 +8,12 @@ const FormInputItem = ({
   type,
   placeholder,
   options,
+  labelStyle
 }) => {
   const getRadioButtons = (options) => {
     console.log(options);
     return options.map((option) => (
-      <label key={option} className="form-radio-item">
+      <label key={option} className="form-radio-item" style={labelStyle}>
         <input type="radio" name={name} value={option} onChange={onChange} />
         {option}
       </label>
@@ -21,7 +22,7 @@ const FormInputItem = ({
 
   if (type === "radio") {
     return (
-      <label className="form-radio-label">
+      <label className="form-radio-label" style={labelStyle}>
         
         {title}:
         <div className="form-radio-item-parent">{getRadioButtons(options)}{" "}</div>
@@ -29,7 +30,7 @@ const FormInputItem = ({
     );
   }
   return (
-    <label className="form-item">
+    <label className="form-item" style={labelStyle}>
       {title}:
       {type === "textarea" ? (
         <textarea name={name} onChange={onChange} placeholder={placeholder} />
@@ -39,6 +40,7 @@ const FormInputItem = ({
           name={name}
           onChange={onChange}
           placeholder={placeholder}
+          style={labelStyle}
         />
       )}
     </label>
@@ -52,6 +54,7 @@ FormInputItem.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string),
+  labelStyle: PropTypes.object,
 };
 
 export default FormInputItem;

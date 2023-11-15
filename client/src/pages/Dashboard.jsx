@@ -31,7 +31,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="bg-backg-color">
       <img src={Logo} alt="BeThere Logo" style={{ width: '300px' }} />
       <h1>Welcome, {me.firstName} {me.lastName}!</h1>
       <Link to="/create-event">Create Event</Link>

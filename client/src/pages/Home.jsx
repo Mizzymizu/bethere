@@ -14,7 +14,7 @@ const Home = () => {
   const isAuthenticated = !!data?.me;
 
   return (
-    <div>
+    <div className="bg-backg-color">
       <img src={Logo} alt="BeThere Logo" style={{ width: "300px" }} />
       {isAuthenticated ? (
         <div>
