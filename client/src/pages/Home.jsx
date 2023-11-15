@@ -14,14 +14,14 @@ const Home = () => {
   const isAuthenticated = !!data?.me;
 
   return (
-    <div className="bg-backg-color">
-      <img className="absolute inset-x-100 top-10" src={Logo}  alt="BeThere Logo"  style={{ width: "400px" }} />
+    <div   >
+      <img  className="absolute object-center top-8 "  src={Logo}  alt="BeThere Logo"  style={{ width: "500px" }} />
       {isAuthenticated ? (
         <div>
-          <h1>Welcome back!</h1>
-          <p>You are already logged in.</p>
+          <h1 >Welcome back!</h1>
+          <p className="mb-10 ">You are already logged in.</p>
           <p>
-            <Link to="/dashboard">Go to Dashboard</Link>
+            <Link className="mt-5 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2  dark:bg-green-600 dark:hover:bg-green-700  dark:focus:ring-green-800" to="/dashboard">Go to Dashboard</Link>
           </p>
         </div>
       ) : (
