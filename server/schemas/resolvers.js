@@ -106,11 +106,11 @@ const resolvers = {
           ...input,
           createdBy: user._id,
         });
-        const test = await Event.collection.Query();
+        // const test = await Event.collection.Query();
 
-        test
-          .then((res) => console.log("test", res))
-          .catch((err) => console.log(err));
+        // test
+        //   .then((res) => console.log("test", res))
+        //   .catch((err) => console.log(err));
 
         return createdEvent;
       } catch (err) {

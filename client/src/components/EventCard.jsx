@@ -10,7 +10,7 @@ const EventCard = ({ event }) => {
         window.location.href = "/RSVP/" + event._id;
       }}
     >
-      <h2>{event.title}</h2>
+      <h2>{event.name}</h2>
       <p>{event.description}</p>
       <p>Date: {event.date}</p>
       <p>@ {event.location}</p>
