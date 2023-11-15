@@ -14,8 +14,8 @@ const Home = () => {
   const isAuthenticated = !!data?.me;
 
   return (
-    <div>
-      <img src={Logo} alt="BeThere Logo" style={{ width: "300px" }} />
+    <div className="bg-backg-color">
+      <img className="absolute inset-x-100 top-10" src={Logo}  alt="BeThere Logo"  style={{ width: "400px" }} />
       {isAuthenticated ? (
         <div>
           <h1>Welcome back!</h1>
@@ -26,11 +26,11 @@ const Home = () => {
         </div>
       ) : (
         <div>
-          <h1>Welcome to our RSVP Application</h1>
-          <p>
+          <h1 className="mb-4 text-4xl font-bold leading-none tracking-tight text-green-800 md:text-5xl lg:text-6xl dark:text-white">Welcome to Be There</h1>
+          <p className="mt-5 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2  dark:bg-green-600 dark:hover:bg-green-700  dark:focus:ring-green-800">
             <Link to="/signup">Sign Up</Link>
           </p>
-          <p>
+          <p className="mt-5 text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2  dark:bg-green-600 dark:hover:bg-green-700  dark:focus:ring-green-800">
             <Link to="/login">Log In</Link>
           </p>
         </div>

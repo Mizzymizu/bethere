@@ -41,6 +41,25 @@ export const QUERY_EVENTS = gql`
   }
 `;
 
+export const QUERY_EVENT = gql`
+  query event($eventId: ID!) {
+    event(eventId: $eventId) {
+      _id
+      name
+      description
+      date
+      time
+      location
+      createdBy {
+        _id
+        firstName
+        lastName
+        email
+      }
+    }
+  }
+`;
+
 export const QUERY_ME = gql`
   query me {
     me {

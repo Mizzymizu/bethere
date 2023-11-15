@@ -31,6 +31,7 @@ const typeDefs = gql`
     users: [User!]!
     user(userId: ID!): User!
     events: [Event!]!
+    event: Event!
     me: User
   }
 

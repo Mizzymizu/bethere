@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './index.html'],
   theme: {
     extend: {
       colors: {
@@ -8,10 +8,12 @@ module.exports = {
         'color2': '#3a5a40',
         'logo-color': '#588157',
         'font-color': 'a3b18a',
-        'background-color': '#dad7cd', 
+        'backg-color': '#dad7cd', 
       },
     },
   },
+  variants: {
+    extend: {},
+  },
   plugins: [],
 }
-
