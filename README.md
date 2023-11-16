@@ -64,7 +64,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/bethere.git
+   git clone git@github.com:Mizzymizu/bethere.git
     ```
 
 2. Navigate to the project directory:
@@ -79,13 +79,6 @@ Make sure you have the following installed:
     npm install
     ```
 
-4. Set up Set up environment variables:
-
-Create a .env file in the root directory and add the necessary variables.
-
-    REACT_APP_GRAPHQL_ENDPOINT=/graphql
-    REACT_APP_API_URL=https://your-api-url.com
-
 ## Usage
 
 1. Start the development server:
@@ -95,6 +88,8 @@ Create a .env file in the root directory and add the necessary variables.
    ```
 
 2. Open http://localhost:3000 to view it in the browser.
+
+3. Here is the link to the deployed application! [Bethere](https://desolate-cove-73819-2105622f4b27.herokuapp.com/)
 
 ## License
 
